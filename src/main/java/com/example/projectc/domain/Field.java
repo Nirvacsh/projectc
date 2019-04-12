@@ -10,19 +10,10 @@ public class Field {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "field_id", nullable = false)
     private Long fieldId;
-//
-    @ManyToOne
-    private Long docNum;
 
-    public Field getFields() {
-        return fields;
-    }
-
-    public void setFields(Field fields) {
-        this.fields = fields;
-    }
     @ManyToOne
-    private Field fields;
+    @JoinColumn
+    private Document document;
 
     @Column(name = "field_name", nullable = false)
     private String fieldName;
@@ -36,14 +27,6 @@ public class Field {
 
     public void setFieldId(Long fieldId) {
         this.fieldId = fieldId;
-    }
-
-    public Long getDocNum() {
-        return docNum;
-    }
-
-    public void setDocNum(Long docNum) {
-        this.docNum = docNum;
     }
 
     public String getFieldName() {
@@ -62,8 +45,15 @@ public class Field {
         this.fieldValue = fieldValue;
     }
 
-    public Field(Long docNum, String fieldName, String fieldValue) {
-        this.docNum = docNum;
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public Field(String fieldName, String fieldValue) {
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
     }

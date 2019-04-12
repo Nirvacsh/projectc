@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-<div>Hello, guest</div>
-<a href="/main">Main page</a>
+<h5>Hello, stranger</h5>
+<div>This is a simple docx project</div>
 </@c.page>

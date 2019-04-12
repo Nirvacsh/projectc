@@ -30,22 +30,23 @@ public class MainController {
     @Autowired
     private FieldRepo fieldRepo;
 
-    @RequestMapping(value = "/collector", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String collector (@RequestParam(required = false) Long docNum) throws JSONException {
-        Document d = new Document();
-        d.setDocNum(docNum);
 
-        JSONArray fieldArray = new JSONArray();
-        for (Field field : d.getFields()) {
-            JSONObject fieldJSON = new JSONObject();
-            fieldJSON.put("field_name", field.getFieldName());
-            fieldJSON.put("field_value", field.getFieldValue());
-            fieldArray.put(fieldJSON);
-        }
-
-        return fieldArray.toString();
-    }
-
+//    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody
+//    String collector (@RequestParam(required = false) String docName) throws JSONException {
+//        Document d = new Document();
+//        d.setDocName(docName);
+//
+//        JSONArray fieldArray = new JSONArray();
+//        for (Field field : d.getFields()) {
+//            JSONObject fieldJSON = new JSONObject();
+//            fieldJSON.put("field_name", field.getFieldName());
+//            fieldJSON.put("field_value", field.getFieldValue());
+//            fieldArray.put(fieldJSON);
+//        }
+//
+//        return fieldArray.toString();
+//    }
     @PostMapping("/main")
     @ResponseBody
     public HttpEntity<byte[]> add(@RequestParam String docNumber,

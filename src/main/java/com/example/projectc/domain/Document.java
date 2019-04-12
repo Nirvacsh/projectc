@@ -12,11 +12,11 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long docId;
 
-    private Long docNum;
-
     private String docPath;
 
-    @OneToMany(mappedBy = "fields", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private String docName;
+
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Field> fields;
 
     public Set<Field> getFields() {
@@ -26,20 +26,13 @@ public class Document {
     public void setFields(Set<Field> fields) {
         this.fields = fields;
     }
+
     public Long getDocId() {
         return docId;
     }
 
     public void setDocId(Long docId) {
         this.docId = docId;
-    }
-
-    public Long getDocNum() {
-        return docNum;
-    }
-
-    public void setDocNum(Long docNum) {
-        this.docNum = docNum;
     }
 
     public String getDocPath() {
@@ -50,15 +43,22 @@ public class Document {
         this.docPath = docPath;
     }
 
-    public Document(Long docNum, String docPath) {
-        this.docNum = docNum;
+    public void setDocName (String docName) {
+        this.docName = docName;
+    }
+
+    public String getDocName(){
+        return docName;
+    }
+
+    public Document(String docName, String docPath) {
+        this.docName = docName;
         this.docPath = docPath;
     }
 
     public Document(){
 
     }
-
 
 }
 
