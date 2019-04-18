@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/user">User List</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/uploadDocument">Upload document</a>
+            </li>
         </ul>
         <div class="navbar-text mr-3">${name}</div>
         <div class="navbar-text"><@l.logout /></div>

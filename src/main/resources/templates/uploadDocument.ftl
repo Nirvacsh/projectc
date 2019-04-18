@@ -5,6 +5,6 @@
     <input type="file" name="file"/>
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <br><br>
-    <button type="submit" class="btn btn-success ">Create template</button>
+    <button type="submit" class="btn btn-success ">Go to templator</button>
 
 </@c.page>
