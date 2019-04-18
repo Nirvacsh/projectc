@@ -9,7 +9,7 @@ import java.util.Set;
 public class Document {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long docId;
 
     private String docPath;

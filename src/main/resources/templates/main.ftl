@@ -72,4 +72,16 @@
             </div>
         </>
     </form>
+
+
+        <#list documents as document>
+<div>
+                <b>${document.docId}</b>
+                <b>${document.docName}</b>
+                <b><a href="/main/${document.docId}">Choose</a></b>
+</div>
+            <#else>
+            No documents!
+        </#list>
+
 </@c.page>

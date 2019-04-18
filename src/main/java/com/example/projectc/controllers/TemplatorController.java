@@ -2,6 +2,7 @@ package com.example.projectc.controllers;
 
 import com.example.projectc.domain.Document;
 import com.example.projectc.domain.Field;
+import com.example.projectc.repos.DocumentRepo;
 import com.example.projectc.repos.FieldRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,43 +24,24 @@ public class TemplatorController {
     @Autowired
     private FieldRepo fieldRepo;
 
+    @Autowired
+    private DocumentRepo documentRepo;
 
-    @Value("{upload.path}")
-    private String uploadPath;
     @PostMapping
-    public String createTemplate(@RequestParam(required = false) String fieldName,
-                                 @RequestParam(required = false) String docName, //Question
-                                 @RequestParam("file")MultipartFile file, Model model) throws IOException, NullPointerException {
-        //Создаем объект док, в конструктор сразу добавляем путь и название дока
-        Document doc = new Document();
-        //Создаем объект поле, в конструкторе ничего не добавляем, в данном контроллере нам нужно получить только названия полей
+    public String createTemplate(@RequestParam(required = false) String fieldName,@RequestParam Document document, Model model) {
+
         Field field = new Field();
 
         field.setFieldName(fieldName);
-        //how to link Field to document in code
-        //example...
-        //how to
-
-        //Проверка на остутстиве файла или имени файла
-        if(file != null && !file.getOriginalFilename().isEmpty()) {
-            //если проходит, то директория загрузки это путь к файлу
-            File uploadDir = new File(uploadPath);
-            //если не существует такой директории, то создаем
-            if(!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            doc.setDocName(file.getOriginalFilename());
-            doc.setDocPath(uploadPath);
-            //Переносим файл методом в новый файл по пути, грубо говоря сохранение
-            file.transferTo(new File(uploadPath + "/" + doc.getDocName()));
-        }
+        field.setDocument(document);
 
         fieldRepo.save(field);
 
         model.addAttribute("field", field);
-        model.addAttribute("document", doc);
 
-        return "template";
+        Iterable<Document> documents = documentRepo.findAll();
+        model.addAttribute("documents", documents);
+        return "templator";
     }
 
 

@@ -14,6 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.wickedsource.docxstamper.DocxStamper;
 import org.wickedsource.docxstamper.DocxStamperConfiguration;
@@ -63,7 +64,7 @@ public class MainController {
                                   @RequestParam String fopAddress,
                                   @RequestParam String fopMoneyNumber,
                                   @RequestParam String fopTelephone,
-                                  @RequestParam String fopCode) throws Exception {
+                                  @RequestParam String fopCode, Model model) throws Exception {
 
         DocxStamper stamper = new DocxStamper(new DocxStamperConfiguration());
         DocxContext context = new DocxContext();
@@ -98,13 +99,24 @@ public class MainController {
         out.close();
         template.close();
         result.close();
+
+
         return new HttpEntity<>(documentBody, responseHeaders);//IOUtils.toByteArray(result);//
     }
 
 
 
     @GetMapping("/main")
-    public String addMain() {
+    public String addMain(Model model) {
+        Iterable<Document> documents = documentRepo.findAll();
+        model.addAttribute("documents", documents);
         return "main";
+    }
+
+    @GetMapping("/main/{document}")
+    public String userEditForm(@PathVariable Document document, Model model) {
+        model.addAttribute("document", document);
+
+        return "documentCreate";
     }
 }

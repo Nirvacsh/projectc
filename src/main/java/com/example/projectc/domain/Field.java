@@ -18,7 +18,7 @@ public class Field {
     @Column(name = "field_name", nullable = false)
     private String fieldName;
 
-    @Column(name = "field_value", nullable = false)
+    @Column(name = "field_value")
     private String fieldValue;
 
     public Long getFieldId() {
