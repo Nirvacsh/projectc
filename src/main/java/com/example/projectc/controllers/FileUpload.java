@@ -26,14 +26,12 @@ public class FileUpload {
 
     @PostMapping("/uploadDocument")
     public String uploadDocument(@RequestParam("file") MultipartFile file, Model model) throws IOException, NullPointerException {
-        //Создаем объект док, в конструктор сразу добавляем путь и название дока
         Document doc = new Document();
 
-        //Проверка на остутстиве файла или имени файла
         if(file != null && !file.getOriginalFilename().isEmpty()) {
-            //если проходит, то директория загрузки это путь к файлу
+
             File uploadDir = new File(uploadPath);
-            //если не существует такой директории, то создаем
+
             if(!uploadDir.exists()) {
                 uploadDir.mkdir();
             }

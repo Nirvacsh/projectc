@@ -6,5 +6,4 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <br><br>
     <button type="submit" class="btn btn-success ">Go to templator</button>
-
 </@c.page>

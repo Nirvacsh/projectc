@@ -2,15 +2,30 @@
 <@c.page>
 <form action="#" method="post" enctype="multipart/form-data">
     <div class="form-row">
-        <label class="col-md-2 col-form-label">Field name:</label>
-        <div class="col-md-4">
-            <input type="text" name="fieldName" class="form-control" placeholder="Field name"/>
+        <label class="col-md-1 col-form-label" for="fieldN">Field name:</label>
+        <div class="col-md-5">
+            <input type="text" name="fieldName" id="fieldN" class="form-control" placeholder="Field name"/>
         </div>
-        <label class="col-md-2" for="documentName">Document:</label>
-        <div class="form-group col-md-4">
-            <select type="text" name="document" id="documentName" class="form-control"/>
+        <label class="col-md-1 col-form-label" for="documentN">Document:</label>
+        <div class="col-md-5">
+            <select name="document" id="documentN" class="form-control" placeholder="Document"/>
+            <option selected>Choose one</option>
+            <option>....</option>
         </div>
-        <input type="file" name="file"/>
+<#--        <label for="documentName">DocName</label>-->
+<#--        <div class="form-group col-md-4">-->
+<#--            <select name="document" id="documentName" class="form-control"/>-->
+<#--            <option selected> Choose...</option>-->
+<#--            <option><#list documents as document>-->
+<#--                    <div>-->
+<#--                        <b>${document.docId}</b>-->
+<#--                        <b>${document.docName}</b>-->
+<#--                    </div>-->
+<#--                <#else>-->
+<#--                    No documents!-->
+<#--                </#list></option>-->
+<#--        </div>-->
+
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <br><br>
     </div>
@@ -19,5 +34,4 @@
 
 
 </form>
-
 </@c.page>

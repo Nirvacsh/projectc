@@ -12,14 +12,15 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.wickedsource.docxstamper.DocxStamper;
 import org.wickedsource.docxstamper.DocxStamperConfiguration;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.Map;
 
 
 @Controller
@@ -31,7 +32,13 @@ public class MainController {
     @Autowired
     private FieldRepo fieldRepo;
 
+    @PostMapping
+    public String doc(HttpServletRequest h, Model model) {
 
+        Map<String, String[]> mapa = h.getParameterMap();
+
+        return "main";
+    }
 //    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public @ResponseBody
 //    String collector (@RequestParam(required = false) String docName) throws JSONException {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,8 +28,13 @@ public class TemplatorController {
     @Autowired
     private DocumentRepo documentRepo;
 
+
+
     @PostMapping
-    public String createTemplate(@RequestParam(required = false) String fieldName,@RequestParam Document document, Model model) {
+    public String createTemplate(@RequestParam(required = false) String fieldName, @RequestParam(required = false) Document document, Model model, HttpServletRequest h) throws IOException{
+
+
+        h.getParameterMap();
 
         Field field = new Field();
 
@@ -41,7 +47,8 @@ public class TemplatorController {
 
         Iterable<Document> documents = documentRepo.findAll();
         model.addAttribute("documents", documents);
-        return "templator";
+
+        return "redirect:/main";
     }
 
 
