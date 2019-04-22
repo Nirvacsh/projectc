@@ -5,7 +5,7 @@
 <div>
                 <b>${document.docId}</b>
                 <b>${document.docName}</b>
-                <b><a href="/main/${document.docId}">Choose</a></b>
+                <b><a href="/documents/${document.docId}">Choose</a></b>
 </div>
             <#else>
             No documents!
